@@ -5,7 +5,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 
 public class ReadFile {
@@ -15,30 +14,24 @@ public class ReadFile {
         
             FileReader fcr = new FileReader(file);
             BufferedReader cr = new BufferedReader(fcr);
-            
-
             while ((text = cr.readLine()) != null) {
                 lineNumber++;
-                
-                
                 //tabel ship
                 //header
                 //Type Draft Length Width DWT Arrival Des_depart Manoeuvring_time Cost_Wait Cost_Delay Process_times_in_berths(0=Incompatible)(matrix)
                 if(lineNumber > 141){
                     arrship.add(text.split(" "));
                 }
-              }
+            }
         //loop semua ship i
         //bikin objek ship dengan id i
         //isi atribut objek ship dari masing masing kolom pada ship i
         for (int i = 0; i<arrship.size() ; i++) {
             Ship ship = new Ship(i);
             for (String strArr : arrship.get(i)) {
-                ship.setType(arrship.get(i)[0]);
-                ship.setDraft(Double.parseDouble(arrship.get(i)[1]));
-                ship.setLength(Double.parseDouble(arrship.get(i)[2]));
-                ship.setWidth(Double.parseDouble(arrship.get(i)[3]));
-                ship.setDWT(Double.parseDouble(arrship.get(i)[4]));
+                
+                
+              
                 ship.setArrival(Double.parseDouble(arrship.get(i)[5]));
                 ship.setDesDepart(Double.parseDouble(arrship.get(i)[6]));
                 ship.setManouvTime(Integer.parseInt(arrship.get(i)[7]));

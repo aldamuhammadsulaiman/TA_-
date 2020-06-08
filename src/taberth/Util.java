@@ -3,17 +3,6 @@ package taberth;
 
 import java.io.FileWriter;
 import java.util.ArrayList;
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author refing
- */
 public class Util {
     public static boolean cekhc(ArrayList<Ship> listship){
         boolean cek0 = false;
@@ -49,10 +38,6 @@ public class Util {
             //constrain kapal 2 bisa berth kalo kapal 1 udah depart (7)
 //            if(conflictmatrix(listship)==true){
                 cek3=true;
-//            }else{
-//                cek3=false;
-//                System.out.println(i+" Xconstrain 3");
-//            }
             //consntrain ti >= relk //?
             for(int ii = 0; ii < listship.size(); ii++) {
                 for(int j = ii+1; j < listship.size(); j++) {
@@ -69,40 +54,13 @@ public class Util {
             }
         }
         
-        
         if(cek0&&cek1&&cek2&&cek3&&cek4){
             valid=true;
         }else
             valid=false;
         return valid;
-    }
-    
-    
-//    public static boolean conflictmatrix(ArrayList<Ship> listship){
-//        int M = InitSolution.M;
-//        int sigma = 0;
-//        boolean conf = false;
-//        boolean depart = false;
-//        
-//        for(int i = 0; i < listship.size(); i++) {
-//            for(int j = i+1; j < listship.size(); j++) {
-//                if(listship.get(j).getTi()>=listship.get(i).getRi()){
-//                    sigma =1;
-//                }
-//            }
-//        }
-//        
-//        for (int i = 0; i < listship.size(); i++) {
-//            for (int j = i+1; j < listship.size(); j++) {
-//                depart = listship.get(j).getTi()>=listship.get(i).getRi()-M+M*sigma;
-//            }
-//        }
-//        if (depart){
-//            conf= true;
-//        }
-//        return conf;
-//    }
-//    
+    }    
+ 
     public static int cost(ArrayList<Ship> listship){
         int cost=0;
         for (int i = 0; i < listship.size(); i++) {
@@ -119,44 +77,6 @@ public class Util {
         return clonedList;
     }
     
-    public static void printinit(ArrayList<Ship> listship){
-        int[][] berthsch = new int[listship.size()][5];
-        //masukin schedule
-        //id ship , id berthh , arrival ship, end ship, cost
-        for (int i = 0; i < listship.size(); i++) {
-            berthsch[i][0]=listship.get(i).getShipId();
-            berthsch[i][1]=listship.get(i).getBerth();
-            berthsch[i][2]=(int)listship.get(i).getArrival();
-            berthsch[i][3]=(int)listship.get(i).getArrival()+listship.get(i).getHi();
-            berthsch[i][4]=listship.get(i).getHi();
-        }
-            
-            
-        System.out.println("bertshcedule");
-        for (int i = 0; i < berthsch.length; i++) {
-            for (int j = 0; j < berthsch[i].length; j++) {
-                System.out.print(berthsch[i][j] + " ");
-            }
-            System.out.println("");
-        }
-        
-        System.out.println("total cost = " + cost(listship));  
-    }
-    public static boolean cekrel(ArrayList<Ship> listship){
-        boolean cek4=false;
-        //consntrain ti >= relk //?
-        for(int i = 0; i < listship.size(); i++) {
-            for(int j = i+1; j < listship.size(); j++) {
-                if (listship.get(i).getBerth()==listship.get(j).getBerth()) {
-//                    System.out.println("ship "+listship.get(i).getShipId()+" di berth "+listship.get(i).getBerth()+" dan ship "+listship.get(j).getShipId()+" diberth "+listship.get(j).getBerth());
-                    if(listship.get(j).getTi()>=listship.get(i).getRi()){
-                        cek4 =true;
-                    }
-                }
-            }
-        }
-        return cek4;
-    }
     public static void export(ArrayList<Ship> listfinal, String filename, int run){
         try{    
             FileWriter fw=new FileWriter("D:\\hasil\\"+filename+"_solution_"+run+".txt"); 
@@ -180,7 +100,6 @@ public class Util {
             
             fw.write(filename+"-"+run+";"+Util.cost(initial)+";"+Util.cost(hc)+";"+Util.cost(ils)+";"+start+";"+end+";"+best);
             fw.write("\n");
-//            fw.write(""+Util.cost(initial)+" hc "+Util.cost(hc)+" ils "+Util.cost(ils)); 
             fw.close();    
         } catch(Exception e){
         	System.out.println(e);

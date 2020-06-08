@@ -3,10 +3,8 @@ package taberth;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import sun.text.normalizer.UBiDiProps;
 
-public class Mainprog {
-    
+public class Mainprog {    
     public static void main(String[] args) throws IOException, CloneNotSupportedException  {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 1; j++) {
