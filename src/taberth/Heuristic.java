@@ -24,153 +24,174 @@ public class Heuristic {
         this.initsol=initsol;
     }                
    
-    public void GA(int popSize,double crossOveRate, double mutationRate, double elitism,int maxiteration ){                                    
-        double penaltyLocal;
-        ArrayList<Ship> sbest = Util.cloneList(initsol);
-        ArrayList<Ship> stemp = Util.cloneList(initsol);
-        ArrayList<Ship> [] a= new ArrayList[popSize];
+    public void GA(int popSize,double crossOveRate, double mutationRate, int maxiteration ){                                    
+        double penaltyLocal=0;
+        double penaltyHC=0;
+        ArrayList<Ship> sbest = Util.cloneList(initsol);        
+        ArrayList<Ship> [] populasi= new ArrayList[popSize];
         for (int i = 0; i < popSize; i++) {
-            a[i]=new ArrayList<>(initsol);
+            populasi[i]=new ArrayList<>(initsol);
         }                          
                 
         double penalty1 = Util.cost(sbest);
-        double[]    penalty2 = new double[popSize];
-        for (int populationIndex = 0; populationIndex < popSize; populationIndex++) {
+        double[] penalty2 = new double[popSize];
+       
            for (int i = 0; i < maxiteration; i++) {
             int numb=rn.nextInt(9); 
-            if (mutationRate > Math.random() && populationIndex>=elitism){
-                switch(numb){
-                case(0):
-                    do {
-                        shift(a[0]);
-                    } while (!Util.cekhc(a[0]));
-                    break;
-                case(1):
-                    do {
-                      swap(a[1]);
-                    } while (!Util.cekhc(a[1]));
-                    break;
-                case(2):
-                    do {
-                      swap(a[2]);
-                    } while (!Util.cekhc(a[2]));
-                    break;
-                case(3):
-                    do {
-                      swap(a[3]);
-                    } while (!Util.cekhc(a[3]));
-                    break;
-                case(4):
-                    do {
-                      swap(a[4]);
-                    } while (!Util.cekhc(a[4]));
-                    break;
-                case(5):
-                    do {
-                      swap(a[5]);
-                    } while (!Util.cekhc(a[5]));
-                    break;
-                case(6):
-                    do {
-                      swap(a[6]);
-                    } while (!Util.cekhc(a[6]));
-                    break;
-                case(7):
-                    do {
-                      swap(a[7]);
-                    } while (!Util.cekhc(a[7]));
-                    break;
-                case(8):
-                    do {
-                      swap(a[8]);
-                    } while (!Util.cekhc(a[8]));
-                    break;
-                case(9):
-                    do {
-                      swap(a[9]);
-                    } while (!Util.cekhc(a[9]));
-                    break;
-               
+                if (mutationRate > Math.random()){
+                    switch(numb){
+                        case(0):
+                            do {
+                                shift(populasi[0]);
+                            } while (!Util.cekhc(populasi[0]));
+                            break;
+
+                        case(1):
+                            do {
+                                shift(populasi[1]);
+                            } while (!Util.cekhc(populasi[1]));
+                            break;
+
+                        case(2):
+                            do {
+                                shift(populasi[2]);
+                            } while (!Util.cekhc(populasi[2]));
+                            break;
+
+                        case(3):
+                            do {
+                                shift(populasi[3]);
+                            } while (!Util.cekhc(populasi[3]));
+                            break;
+
+                        case(4):
+                            do {
+                                shift(populasi[4]);
+                            } while (!Util.cekhc(populasi[4]));
+                            break;
+
+                        case(5):
+                            do {
+                                shift(populasi[5]);
+                            } while (!Util.cekhc(populasi[5]));
+                            break;
+
+                        case(6):
+                            do {
+                                shift(populasi[6]);
+                            } while (!Util.cekhc(populasi[6]));
+                            break;
+
+                        case(7):
+                            do {
+                                shift(populasi[7]);
+                            } while (!Util.cekhc(populasi[7]));
+                            break;	
+
+                        case(8):
+                            do {
+                                shift(populasi[8]);
+                            } while (!Util.cekhc(populasi[8]));
+                            break;                           
+
+                        case(9):
+                            do {
+                                shift(populasi[9]);
+                            } while (!Util.cekhc(populasi[9]));
+                            break;                     
+
+                    }
                 }
-            }
-            if (crossOveRate > Math.random() && populationIndex>=elitism){
+                if (crossOveRate > Math.random()){
                     switch(numb){                                                                  
                         case(0):
                         do {
-                          swap(a[0]);
-                        } while (!Util.cekhc(a[0]));
+                          swap(populasi[0]);
+                        } while (!Util.cekhc(populasi[0]));
                         break;
                         case(1):
                         do {
-                          swap(a[1]);
-                        } while (!Util.cekhc(a[1]));
+                          swap(populasi[1]);
+                        } while (!Util.cekhc(populasi[1]));
                         break;
                         case(2):
                         do {
-                          swap(a[2]);
-                        } while (!Util.cekhc(a[2]));
+                          swap(populasi[2]);
+                        } while (!Util.cekhc(populasi[2]));
                         break;
                         case(3):
                         do {
-                          swap(a[3]);
-                        } while (!Util.cekhc(a[3]));
+                          swap(populasi[3]);
+                        } while (!Util.cekhc(populasi[3]));
                         break;
                         case(4):
                         do {
-                          swap(a[4]);
-                        } while (!Util.cekhc(a[4]));
+                          swap(populasi[4]);
+                        } while (!Util.cekhc(populasi[4]));
                         break;
                         case(5):
                         do {
-                          swap(a[5]);
-                        } while (!Util.cekhc(a[5]));
+                          swap(populasi[5]);
+                        } while (!Util.cekhc(populasi[5]));
                         break;
                         case(6):
                         do {
-                          swap(a[6]);
-                        } while (!Util.cekhc(a[6]));
+                          swap(populasi[6]);
+                        } while (!Util.cekhc(populasi[6]));
                         break;
                         case(7):
                         do {
-                          swap(a[7]);
-                        } while (!Util.cekhc(a[7]));
+                          swap(populasi[7]);
+                        } while (!Util.cekhc(populasi[7]));
                         break;
                         case(8):
                         do {
-                          swap(a[8]);
-                        } while (!Util.cekhc(a[8]));
+                          swap(populasi[8]);
+                        } while (!Util.cekhc(populasi[8]));
                         break;
                         case(9):
                         do {
-                          swap(a[9]);
-                        } while (!Util.cekhc(a[9]));
+                          swap(populasi[9]);
+                        } while (!Util.cekhc(populasi[9]));
                         break;
                     }
                 }
                 for (int j = 0; j < popSize; j++) {
-                    penalty2[j]=Util.cost(a[j]);
+                    penalty2[j]=Util.cost(populasi[j]);
                     if(penalty2[j] < penalty1){
                     penalty1 = penalty2[j];
-                    sbest = Util.cloneList(a[j]);
+                    sbest = Util.cloneList(populasi[j]);
                     }else{
-                        a[j] = Util.cloneList(sbest);
+                        populasi[j] = Util.cloneList(sbest);
                     }
                 }
             } 
-        }
+        
         
         //LOCAL SEARCH HILL CLIMBING
         ArrayList<Ship> locS = Util.cloneList(sbest);        
         for (int i = 0; i < maxiteration; i++) {
             localSearch(locS);
+            penaltyLocal=Util.cost(locS);
+            if (penaltyLocal < penalty1) {
+                penalty1=penaltyLocal;
+                sbest= Util.cloneList(locS);
+            }else{
+                locS=Util.cloneList(sbest);
+            }
         }
-        penaltyLocal=Util.cost(locS);
-
-        if (penaltyLocal < penalty1) {
-            penalty1=penaltyLocal;
-            sbest= Util.cloneList(locS);
+        
+        
+        ArrayList<Ship> hc = Util.cloneList(sbest);
+        for (int i = 0; i < maxiteration; i++) {
+            localSearch(hc);
+        }
+        penaltyHC=Util.cost(hc);
+        if (penaltyHC < penalty1) {
+            penalty1=penaltyHC;
+            sbest= Util.cloneList(hc);
         }else{
-            locS=Util.cloneList(sbest);
+            hc=Util.cloneList(sbest);
         }
         
         this.ga_sol=Util.cloneList(sbest);

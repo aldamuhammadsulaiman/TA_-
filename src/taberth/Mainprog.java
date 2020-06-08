@@ -28,7 +28,7 @@ public class Mainprog {
 //        double mutationRate = 0.95;                                          
 //        double elitism = 8;	        
 //        int maxiteration = 100;
-            heur.GA(10, 0.95, 0.95, 2, 1000);
+            heur.GA(20, 0.95, 0.1, 2000);
             Util.export(heur.ga_sol, filename,j);
             Util.exportstat(heur.initsol, heur.ga_sol, heur.ga_sol, filename,j,heur.startimer,heur.endtimer,heur.besttimer);
             System.out.println(filename + " run ke "+j);
